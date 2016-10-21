@@ -45,7 +45,7 @@ public class GamePanel extends JPanel{
 		barpanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
 		add(barpanel);
 
-		lanePanel = new LanePanel(FPS);
+		lanePanel = new LanePanel(FPS, 1);
 		lanePanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
 		lanePanel.setOpaque(false);
 

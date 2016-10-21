@@ -13,15 +13,24 @@ public class LanePanel extends JPanel implements ActionListener{
 	private LaneSubPanel panel3;
 	private LaneSubPanel panel4;
 
-	private int[][] notes;
+	Timer timer;
 
-	public LanePanel(int FPS){
-		panel1 = new LaneSubPanel();
-		panel2 = new LaneSubPanel();
-		panel3 = new LaneSubPanel();
-		panel4 = new LaneSubPanel();
-		Timer timer = new Timer(1000/FPS,this);
+	private byte[][] notes;
+	private int max ;
+	private int count;
 
+	public LanePanel(int FPS, int max){
+
+		panel1 = new LaneSubPanel(notes[0]);
+		panel2 = new LaneSubPanel(notes[1]);
+		panel3 = new LaneSubPanel(notes[2]);
+		panel4 = new LaneSubPanel(notes[3]);
+		this.max = max;
+		timer = new Timer(1000/FPS,this);
+	}
+
+	public void start(){
+		timer.start();
 	}
 
 	@Override
@@ -30,6 +39,10 @@ public class LanePanel extends JPanel implements ActionListener{
 		panel2.upDate();
 		panel3.upDate();
 		panel4.upDate();
+		count ++;
+		if(count > max){
+			timer.stop();
+		}
 	}
 
 }
