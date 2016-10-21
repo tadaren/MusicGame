@@ -1,3 +1,4 @@
+package dust;
 
 public class Debug {
 
