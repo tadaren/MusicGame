@@ -33,17 +33,16 @@ public class LaneSubPanel extends JPanel {
 		case 1: noteState.add(new byte[]{0,1});break;
 		}
 		noteIndex++;
-		repaint();
 	}
 
-	public void paintCompornent(Graphics g){
-		System.out.println("aaaa");
+	@Override
+	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setColor(Color.RED);
-		g2.setStroke(new BasicStroke(3));
+		g2.setStroke(new BasicStroke(5));
 		for(int i = 0; i < noteState.size(); i++){
-			g2.draw(new Line2D.Double(0,noteState.get(i)[0]*bias,getWidth(),noteState.get(i)[0]*bias));
-			g2.fillRect(0, 0, 200, 120);
+			g2.draw(new Line2D.Double(2,noteState.get(i)[0]*bias,getWidth()-3,noteState.get(i)[0]*bias));
+//			g2.fillRect(0, 0, 200, 120);
 		}
 	}
 

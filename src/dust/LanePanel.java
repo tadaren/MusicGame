@@ -37,7 +37,7 @@ public class LanePanel extends JPanel implements ActionListener{
 		this.setLayout(new GridLayout(1,4));
 		this.setBounds(0, 0, 500, 800);
 		this.md = music;
-		max = music.getLaneData(1).length;
+		max = music.getLaneData(1).length-2;
 		this.panel1 = new LaneSubPanel(music.getLaneData(1), music.getBias());
 		this.panel2 = new LaneSubPanel(music.getLaneData(2), music.getBias());
 		this.panel3 = new LaneSubPanel(music.getLaneData(3), music.getBias());
@@ -48,7 +48,7 @@ public class LanePanel extends JPanel implements ActionListener{
 		this.add(panel3);
 		this.add(panel4);
 
-		timer = new Timer(1000, this);
+		timer = new Timer(1000/60, this);
 	}
 
 	public void start(){
@@ -57,7 +57,6 @@ public class LanePanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("bbb");
 		panel1.upDate();
 		panel2.upDate();
 		panel3.upDate();
