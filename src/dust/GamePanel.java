@@ -43,13 +43,13 @@ public class GamePanel extends JPanel{
 		barpanel.add(panel3);
 		barpanel.add(panel4);
 		barpanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
-		add(barpanel);
+		this.add(barpanel);
 
-		lanePanel = new LanePanel(FPS, 1);
+//		lanePanel = new LanePanel(FPS, 1);
+		lanePanel = new LanePanel(new MusicData(".\\music\\music1\\music_note.txt"));
+		lanePanel.start();
 		lanePanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
 		lanePanel.setOpaque(false);
-
-
 		this.add(lanePanel,0);
 
 		infoPanel = new JPanel(){

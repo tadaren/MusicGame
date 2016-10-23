@@ -5,35 +5,46 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 public class LaneSubPanel extends JPanel {
 
-	private byte[] notes;
-	private int[][] noteState;
-	private int noteIndex;
+	private final int bias;
 
-	public LaneSubPanel(byte[] b){
+	private byte[] notes;
+	private ArrayList<byte[]> noteState = new ArrayList<byte[]>();
+	private int noteIndex = 0;
+
+	public LaneSubPanel(byte[] b, int bias){
+		this.bias = bias;
 		setOpaque(false);
 		notes = b;
 	}
 
 	public void upDate(){
-
-
+		System.out.println(noteIndex);
+		for(int i = 0; i < noteState.size(); i++){
+			noteState.get(i)[0] += 1;
+		}
+		switch(notes[noteIndex]){
+		case 0: break;
+		case 1: noteState.add(new byte[]{0,1});break;
+		}
+		noteIndex++;
+		repaint();
 	}
 
 	public void paintCompornent(Graphics g){
+		System.out.println("aaaa");
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setColor(Color.RED);
 		g2.setStroke(new BasicStroke(3));
-		for(int i = 0; i < noteState.length; i++){
-			g2.draw(new Line2D.Double(0,noteState[i][0],getWidth(),noteState[i][0]));
+		for(int i = 0; i < noteState.size(); i++){
+			g2.draw(new Line2D.Double(0,noteState.get(i)[0]*bias,getWidth(),noteState.get(i)[0]*bias));
+			g2.fillRect(0, 0, 200, 120);
 		}
-
-
-
 	}
 
 }

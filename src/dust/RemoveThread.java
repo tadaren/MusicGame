@@ -12,7 +12,10 @@ public class RemoveThread extends Thread {
     	panel = p;
     	frame = f;
     }
-    public void run() {
+    public RemoveThread(SubPanel panel1) {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+	public void run() {
             // 時間のかかる処理を実行
             doLongTask();
             // イベントディスパッチスレッドでボタンを変更
@@ -25,7 +28,7 @@ public class RemoveThread extends Thread {
     }
     private void doLongTask() {
         try {
-                Thread.sleep(100);
+                Thread.sleep(70);
         } catch (InterruptedException ex) {
         }
 }
