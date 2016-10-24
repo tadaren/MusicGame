@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class MusicData {
 
 	private int tempo;
-	private int bias;
+	private int speed;
+	private int correction;
 
 	private byte[] lane1;
 	private byte[] lane2;
@@ -20,7 +21,6 @@ public class MusicData {
 		try {
 			FileRead(new File(fileName));
 		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}
@@ -29,13 +29,20 @@ public class MusicData {
 		try {
 			FileRead(f);
 		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}
 
-	public int getBias(){
-		return this.bias;
+	public int getTempo() {
+		return this.tempo;
+	}
+
+	public int getSpeed(){
+		return this.speed;
+	}
+
+	public int getCorrection(){
+		return this.correction;
 	}
 
 	public byte[] getLaneData(int index){
@@ -51,7 +58,8 @@ public class MusicData {
 	private void FileRead(File f) throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader(f));
 		tempo = Integer.parseInt(br.readLine());
-		bias = Integer.parseInt(br.readLine());
+		speed = Integer.parseInt(br.readLine());
+		correction = Integer.parseInt(br.readLine());
 		ArrayList<Byte> lane1 = new ArrayList<Byte>();
 		ArrayList<Byte> lane2 = new ArrayList<Byte>();
 		ArrayList<Byte> lane3 = new ArrayList<Byte>();
@@ -78,5 +86,4 @@ public class MusicData {
 
 		return bytes;
 	}
-
 }

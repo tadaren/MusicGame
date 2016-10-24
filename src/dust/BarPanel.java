@@ -20,31 +20,27 @@ public class BarPanel extends JPanel{
 
 
 	public BarPanel(){
-		setFocusable(true);
+//		setFocusable(true);
 		setLayout(new GridLayout(1, 4));
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if(e.getKeyChar() == KEY1){
 					panel1.changeColor();
-					Thread removeThread = new
-		                    RemoveThread(panel1);
-		                    removeThread.start();
+					Thread removeThread = new RemoveThread(panel1);
+					removeThread.start();
 				}else if(e.getKeyChar() == KEY2){
 					panel2.changeColor();
-					Thread removeThread = new
-		                    RemoveThread(panel2);
-		                    removeThread.start();
+					Thread removeThread = new RemoveThread(panel2);
+					removeThread.start();
 				}else if(e.getKeyChar() == KEY3){
 					panel3.changeColor();
-					Thread removeThread = new
-		                    RemoveThread(panel3);
-		                    removeThread.start();
+					Thread removeThread = new RemoveThread(panel3);
+					removeThread.start();
 				}else if(e.getKeyChar() == KEY4){
 					panel4.changeColor();
-					Thread removeThread = new
-		                    RemoveThread(panel4);
-		                    removeThread.start();
+					Thread removeThread = new RemoveThread(panel4);
+					removeThread.start();
 				}
 
 			}

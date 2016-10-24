@@ -46,17 +46,17 @@ public class GamePanel extends JPanel{
 		this.add(barpanel);
 
 //		lanePanel = new LanePanel(FPS, 1);
-		lanePanel = new LanePanel(new MusicData(".\\music\\music1\\music_note.txt"));
+		lanePanel = new LanePanel(new MusicData(".\\music\\music1\\music_note.txt"), FPS);
 		lanePanel.start();
 		lanePanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
 		lanePanel.setOpaque(false);
 		this.add(lanePanel,0);
 
 		infoPanel = new JPanel(){
-			public void paint(Graphics g){
+			public void paintComponent(Graphics g){
 				Graphics2D g2 = (Graphics2D)g;
-				g2.setStroke(new BasicStroke(4));
-				g2.draw(new Line2D.Double(0,FRAME_SIZE_Y-140,FRAME_SIZE_X-101,FRAME_SIZE_Y-140));
+				g2.setStroke(new BasicStroke(5));
+				g2.draw(new Line2D.Double(0,FRAME_SIZE_Y-150,FRAME_SIZE_X-101,FRAME_SIZE_Y-150));
 			}
 		};
 		infoPanel.setOpaque(false);
@@ -77,23 +77,23 @@ public class GamePanel extends JPanel{
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if(e.getKeyChar() == KEY1){
-					panel1.changeColor();
-					frame.repaint();
+					panel1.changeColor(lanePanel.checkNote(1));
+//					frame.repaint();
 					Thread removeThread = new RemoveThread(panel1,frame);
 					removeThread.start();
 				}else if(e.getKeyChar() == KEY2){
-					panel2.changeColor();
-					frame.repaint();
+					panel2.changeColor(lanePanel.checkNote(2));
+//					frame.repaint();
 					Thread removeThread = new RemoveThread(panel2,frame);
 					removeThread.start();
 				}else if(e.getKeyChar() == KEY3){
-					panel3.changeColor();
-					frame.repaint();
+					panel3.changeColor(lanePanel.checkNote(3));
+//					frame.repaint();
 					Thread removeThread = new RemoveThread(panel3,frame);
 					removeThread.start();
 				}else if(e.getKeyChar() == KEY4){
-					panel4.changeColor();
-					frame.repaint();
+					panel4.changeColor(lanePanel.checkNote(4));
+//					frame.repaint();
 					Thread removeThread = new RemoveThread(panel4,frame);
 					removeThread.start();
 				}
