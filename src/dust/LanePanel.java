@@ -18,13 +18,8 @@ public class LanePanel extends JPanel implements ActionListener{
 
 	Timer timer;
 
-<<<<<<< HEAD
 	private int count;
 	private final int FPS;
-=======
-	private int max ;
-	private int count;
->>>>>>> origin/master
 
 	private MusicData md;
 
@@ -43,19 +38,11 @@ public class LanePanel extends JPanel implements ActionListener{
 		this.setBounds(0, 0, 500, 800);
 		this.ip = ip;
 		this.md = music;
-<<<<<<< HEAD
 		this.FPS = FPS;
 		this.panel1 = new LaneSubPanel(music.getLaneData(1), music.getSpeed()/FPS*100, FPS*60/md.getTempo(), ip);
 		this.panel2 = new LaneSubPanel(music.getLaneData(2), music.getSpeed()/FPS*100, FPS*60/md.getTempo(), ip);
 		this.panel3 = new LaneSubPanel(music.getLaneData(3), music.getSpeed()/FPS*100, FPS*60/md.getTempo(), ip);
 		this.panel4 = new LaneSubPanel(music.getLaneData(4), music.getSpeed()/FPS*100, FPS*60/md.getTempo(), ip);
-=======
-		max = music.getLaneData(1).length-3;
-		this.panel1 = new LaneSubPanel(music.getLaneData(1), music.getSpeed(), music.getCorrection(), ip);
-		this.panel2 = new LaneSubPanel(music.getLaneData(2), music.getSpeed(), music.getCorrection(), ip);
-		this.panel3 = new LaneSubPanel(music.getLaneData(3), music.getSpeed(), music.getCorrection(), ip);
-		this.panel4 = new LaneSubPanel(music.getLaneData(4), music.getSpeed(), music.getCorrection(), ip);
->>>>>>> origin/master
 
 		this.add(panel1);
 		this.add(panel2);
@@ -82,20 +69,12 @@ public class LanePanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 		if(count < md.getTime()*FPS){
 			panel1.upDate();
 			panel2.upDate();
 			panel3.upDate();
 			panel4.upDate();
 		}else{
-=======
-		panel1.upDate();
-		panel2.upDate();
-		panel3.upDate();
-		panel4.upDate();
-		if(count > max*32/md.getCorrection()){
->>>>>>> origin/master
 			timer.stop();
 			ip.end();
 		}
