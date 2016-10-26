@@ -56,20 +56,13 @@ public class GamePanel extends JPanel{
 
 		infoPanel = new InfoPanel(FRAME_SIZE_X, FRAME_SIZE_Y);
 
-<<<<<<< HEAD
 //		lanePanel = new LanePanel(FPS, 1);
 		lanePanel = new LanePanel(new MusicData("./music/music1/music_note.txt"), FPS, infoPanel);
-=======
-		//		lanePanel = new LanePanel(FPS, 1);
-		//		lanePanel = new LanePanel(new MusicData(".\\music\\music1\\music_note.txt"), FPS);
-		lanePanel = new LanePanel(new MusicData("./music/music1/music_note.txt"), FPS, infoPanel);		//mac linux
->>>>>>> origin/master
 		lanePanel.start();
 		lanePanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
 		lanePanel.setOpaque(false);
 		this.add(lanePanel,0);
 
-<<<<<<< HEAD
 //		infoPanel = new JPanel(){
 //			public void paintComponent(Graphics g){
 //				Graphics2D g2 = (Graphics2D)g;
@@ -77,15 +70,6 @@ public class GamePanel extends JPanel{
 //				g2.draw(new Line2D.Double(0,FRAME_SIZE_Y-150,FRAME_SIZE_X-101,FRAME_SIZE_Y-150));
 //			}
 //		};
-=======
-		//		infoPanel = new JPanel(){
-		//			public void paintComponent(Graphics g){
-		//				Graphics2D g2 = (Graphics2D)g;
-		//				g2.setStroke(new BasicStroke(5));
-		//				g2.draw(new Line2D.Double(0,FRAME_SIZE_Y-150,FRAME_SIZE_X-101,FRAME_SIZE_Y-150));
-		//			}
-		//		};
->>>>>>> origin/master
 		infoPanel.setOpaque(false);
 		infoPanel.setBounds(0, 0, FRAME_SIZE_X, FRAME_SIZE_Y);
 		this.add(infoPanel,0);
@@ -146,40 +130,24 @@ public class GamePanel extends JPanel{
 					if(panel1.changeColor(lanePanel.checkNote(1))){
 						infoPanel.addCombo();
 					}
-<<<<<<< HEAD
-=======
-//					frame.repaint();
->>>>>>> origin/master
 					Thread removeThread = new RemoveThread(panel1,frame);
 					removeThread.start();
 				}else if(e.getKeyChar() == KEY2){
 					if(panel2.changeColor(lanePanel.checkNote(2))){
 						infoPanel.addCombo();
 					}
-<<<<<<< HEAD
-=======
-//					frame.repaint();
->>>>>>> origin/master
 					Thread removeThread = new RemoveThread(panel2,frame);
 					removeThread.start();
 				}else if(e.getKeyChar() == KEY3){
 					if(panel3.changeColor(lanePanel.checkNote(3))){
 						infoPanel.addCombo();
 					}
-<<<<<<< HEAD
-=======
-//					frame.repaint();
->>>>>>> origin/master
 					Thread removeThread = new RemoveThread(panel3,frame);
 					removeThread.start();
 				}else if(e.getKeyChar() == KEY4){
 					if(panel4.changeColor(lanePanel.checkNote(4))){
 						infoPanel.addCombo();
 					}
-<<<<<<< HEAD
-=======
-//					frame.repaint();
->>>>>>> origin/master
 					Thread removeThread = new RemoveThread(panel4,frame);
 					removeThread.start();
 				}
