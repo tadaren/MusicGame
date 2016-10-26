@@ -10,7 +10,7 @@ public class MusicData {
 
 	private int tempo;
 	private int speed;
-	private int correction;
+	private int time;
 
 	private byte[] lane1;
 	private byte[] lane2;
@@ -37,12 +37,12 @@ public class MusicData {
 		return this.tempo;
 	}
 
-	public int getSpeed(){
+	public float getSpeed(){
 		return this.speed;
 	}
 
-	public int getCorrection(){
-		return this.correction;
+	public int getTime(){
+		return this.time;
 	}
 
 	public byte[] getLaneData(int index){
@@ -59,7 +59,7 @@ public class MusicData {
 		BufferedReader br = new BufferedReader(new FileReader(f));
 		tempo = Integer.parseInt(br.readLine());
 		speed = Integer.parseInt(br.readLine());
-		correction = Integer.parseInt(br.readLine());
+		time = Integer.parseInt(br.readLine());
 		ArrayList<Byte> lane1 = new ArrayList<Byte>();
 		ArrayList<Byte> lane2 = new ArrayList<Byte>();
 		ArrayList<Byte> lane3 = new ArrayList<Byte>();
@@ -83,7 +83,6 @@ public class MusicData {
 		for(int i = 0; i < o.length; i++){
 			bytes[i] = Byte.parseByte(o[i].toString());
 		}
-
 		return bytes;
 	}
 }
