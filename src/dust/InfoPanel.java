@@ -43,10 +43,7 @@ public class InfoPanel extends JPanel {
 		g2.setStroke(new BasicStroke(5));
 		g2.draw(new Line2D.Double(0,FRAME_SIZE_Y-150,FRAME_SIZE_X-101,FRAME_SIZE_Y-150));
 		
-<<<<<<< HEAD
 		g2.setFont(new Font("MSゴシック", Font.PLAIN, 20));
-=======
->>>>>>> origin/master
 		g2.drawString("combo", FRAME_SIZE_X-90, 100);
 		g2.drawString(""+combo, FRAME_SIZE_X-90, 120);
 		if(end){
