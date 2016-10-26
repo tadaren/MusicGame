@@ -12,7 +12,12 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class LaneSubPanel extends JPanel {
 
+<<<<<<< HEAD
 	private final float distance;
+=======
+	private final int bias;
+	private final int correction;
+>>>>>>> origin/master
 	private final int ERROR = 15;
 	private final int barposition = 650;
 	private final int interval;
@@ -21,6 +26,7 @@ public class LaneSubPanel extends JPanel {
 	private ArrayList<float[]> noteState = new ArrayList<float[]>();
 	private int noteIndex = 0;
 	private final InfoPanel ip;
+<<<<<<< HEAD
 
 	private int count = 1;
 
@@ -28,11 +34,21 @@ public class LaneSubPanel extends JPanel {
 		this.distance = distance;
 		this.ip = ip;
 		this.interval = interval;
+=======
+	
+	private int count = 0;
+
+	public LaneSubPanel(byte[] b, int bias, int correction, InfoPanel ip){
+		this.bias = bias;
+		this.correction = correction;
+		this.ip = ip;
+>>>>>>> origin/master
 		setOpaque(false);
 		notes = b;
 	}
 
 	public void upDate(){
+<<<<<<< HEAD
 //		System.out.println(noteIndex+1);
 		moveNote();
 		addNote();
@@ -42,6 +58,11 @@ public class LaneSubPanel extends JPanel {
 		for(int i = 0; i < noteState.size(); i++){
 //			System.out.println(distance);
 			noteState.get(i)[0] += distance;
+=======
+		System.out.println(noteIndex+1);
+		for(int i = 0; i < noteState.size(); i++){
+			noteState.get(i)[0] += bias/3;
+>>>>>>> origin/master
 		}
 		if(noteState.size()>0){
 			if(noteState.get(0)[0] > 800){
@@ -50,6 +71,7 @@ public class LaneSubPanel extends JPanel {
 				ip.repaint();
 			}
 		}
+<<<<<<< HEAD
 	}
 
 	private void addNote(){
@@ -57,11 +79,23 @@ public class LaneSubPanel extends JPanel {
 			switch(notes[noteIndex]){
 			case 1: noteState.add(new float[]{0,1});break;
 			}
+=======
+		
+		if(count == 32){
+			switch(notes[noteIndex]){
+			case 1: noteState.add(new int[]{0,1});break;
+			}
+//			System.out.println(notes[noteIndex]);
+>>>>>>> origin/master
 			noteIndex++;
 			count = 1;
 		}else{
 			count++;
 		}
+<<<<<<< HEAD
+=======
+		
+>>>>>>> origin/master
 	}
 
 	public int checkNote(){
