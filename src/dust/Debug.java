@@ -4,7 +4,7 @@ public class Debug {
 
 	public static void main(String[] args) {
 //		new GamePanel();
-		new GamePanel("./music/music/note.txt");
+		new GamePanel("./music/NinePointEight/note.txt", "./music/NinePointEight/07 Nine Point Eight.mp3");
 	}
 
 }

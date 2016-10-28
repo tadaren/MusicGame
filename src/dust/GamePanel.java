@@ -33,51 +33,7 @@ public class GamePanel extends JPanel{
 	private LanePanel lanePanel;
 	private InfoPanel infoPanel;
 
-	public GamePanel(){
-		KEY1 = 'd';
-		KEY2 = 'f';
-		KEY3 = 'j';
-		KEY4 = 'k';
-		FPS = 60;
-
-		setFrame(frame);
-		frame.add(this);
-
-		this.setLayout(null);
-
-		JPanel barpanel = new JPanel();
-		barpanel.setLayout(new GridLayout(1, 4));
-		barpanel.add(panel1);
-		barpanel.add(panel2);
-		barpanel.add(panel3);
-		barpanel.add(panel4);
-		barpanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
-		this.add(barpanel);
-
-		infoPanel = new InfoPanel(FRAME_SIZE_X, FRAME_SIZE_Y);
-
-//		lanePanel = new LanePanel(FPS, 1);
-		lanePanel = new LanePanel(new MusicData("./music/music1/music_note.txt"), FPS, infoPanel);
-		lanePanel.start();
-		lanePanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
-		lanePanel.setOpaque(false);
-		this.add(lanePanel,0);
-
-//		infoPanel = new JPanel(){
-//			public void paintComponent(Graphics g){
-//				Graphics2D g2 = (Graphics2D)g;
-//				g2.setStroke(new BasicStroke(5));
-//				g2.draw(new Line2D.Double(0,FRAME_SIZE_Y-150,FRAME_SIZE_X-101,FRAME_SIZE_Y-150));
-//			}
-//		};
-		infoPanel.setOpaque(false);
-		infoPanel.setBounds(0, 0, FRAME_SIZE_X, FRAME_SIZE_Y);
-		this.add(infoPanel,0);
-
-		frame.setVisible(true);
-	}
-
-	public GamePanel(String filename){
+	public GamePanel(String filename, String musicPath){
 		Properties configuration = new Properties();
 		try {
 			InputStream inputStream = new FileInputStream(new File("game.properties"));
@@ -106,7 +62,7 @@ public class GamePanel extends JPanel{
 		this.add(barpanel);
 
 		infoPanel = new InfoPanel(FRAME_SIZE_X, FRAME_SIZE_Y);
-		lanePanel = new LanePanel(new MusicData(filename), FPS, infoPanel);
+		lanePanel = new LanePanel(new MusicData(filename), FPS, infoPanel, musicPath);
 		lanePanel.start();
 		lanePanel.setBounds(0, 0, FRAME_SIZE_X-100, FRAME_SIZE_Y);
 		lanePanel.setOpaque(false);

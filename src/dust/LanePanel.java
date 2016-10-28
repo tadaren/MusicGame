@@ -3,9 +3,14 @@ package dust;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import music_game.MP3Player;
 
 @SuppressWarnings("serial")
 public class LanePanel extends JPanel implements ActionListener{
@@ -19,21 +24,13 @@ public class LanePanel extends JPanel implements ActionListener{
 	Timer timer;
 
 	private int count;
+	private boolean musicPlay = false;
 	private final int FPS;
 
 	private MusicData md;
+	private MP3Player player;
 
-//	public LanePanel(int FPS, int max){
-//		this.setLayout(new GridLayout(1,4));
-//		panel1 = new LaneSubPanel(notes[0], bias, 10);
-//		panel2 = new LaneSubPanel(notes[1], bias, 10);
-//		panel3 = new LaneSubPanel(notes[2], bias, 10);
-//		panel4 = new LaneSubPanel(notes[3], bias, 10);
-//		this.max = max;
-//		timer = new Timer(1000/FPS,this);
-//	}
-
-	public LanePanel(MusicData music, int FPS, InfoPanel ip){
+	public LanePanel(MusicData music, int FPS, InfoPanel ip, String playerPath){
 		this.setLayout(new GridLayout(1,4));
 		this.setBounds(0, 0, 500, 800);
 		this.ip = ip;
@@ -49,6 +46,11 @@ public class LanePanel extends JPanel implements ActionListener{
 		this.add(panel3);
 		this.add(panel4);
 
+		try {
+			player = new MP3Player(new File(playerPath));
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(this, "ERRORが発生しました。", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		timer = new Timer(1000/FPS, this);
 	}
 
@@ -69,6 +71,11 @@ public class LanePanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(!musicPlay){
+			musicPlay = true;
+			player.play();
+		}
+
 		if(count < md.getTime()*FPS){
 			panel1.upDate();
 			panel2.upDate();
@@ -77,6 +84,7 @@ public class LanePanel extends JPanel implements ActionListener{
 		}else{
 			timer.stop();
 			ip.end();
+			player.stop();
 		}
 		count ++;
 		repaint();
