@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,16 +27,18 @@ public class LanePanel extends JPanel implements ActionListener{
 	private int count;
 	private boolean musicPlay = false;
 	private final int FPS;
+	private final File keymusic;
 
 	private MusicData md;
 	private MP3Player player;
 
-	public LanePanel(MusicData music, int FPS, InfoPanel ip, String playerPath){
+	public LanePanel(MusicData music, int FPS, InfoPanel ip, String playerPath, String keyMusic){
 		this.setLayout(new GridLayout(1,4));
 		this.setBounds(0, 0, 500, 800);
 		this.ip = ip;
 		this.md = music;
 		this.FPS = FPS;
+		this.keymusic = new File(keyMusic);
 		this.panel1 = new LaneSubPanel(music.getLaneData(1), music.getSpeed()/FPS*100, FPS*60/md.getTempo(), ip);
 		this.panel2 = new LaneSubPanel(music.getLaneData(2), music.getSpeed()/FPS*100, FPS*60/md.getTempo(), ip);
 		this.panel3 = new LaneSubPanel(music.getLaneData(3), music.getSpeed()/FPS*100, FPS*60/md.getTempo(), ip);
@@ -60,6 +63,11 @@ public class LanePanel extends JPanel implements ActionListener{
 
 	public int checkNote(int index){
 //		System.out.println(false);
+		try{
+			new MP3Player(keymusic).play();;
+		}catch(IOException e){
+
+		}
 		switch(index){
 		  case 1: return panel1.checkNote();
 		  case 2: return panel2.checkNote();
@@ -69,13 +77,16 @@ public class LanePanel extends JPanel implements ActionListener{
 		return 5;
 	}
 
+	public void stopPlayer(){
+		player.stop();
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(!musicPlay){
 			musicPlay = true;
 			player.play();
 		}
-
 		if(count < md.getTime()*FPS){
 			panel1.upDate();
 			panel2.upDate();
@@ -85,6 +96,8 @@ public class LanePanel extends JPanel implements ActionListener{
 			timer.stop();
 			ip.end();
 			player.stop();
+			GamePanel gp = (GamePanel)getParent();
+			gp.finishedGame();
 		}
 		count ++;
 		repaint();

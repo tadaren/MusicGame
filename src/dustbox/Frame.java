@@ -18,9 +18,9 @@ public class Frame extends JFrame{
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(null);
-		
-		JPanel lanePanel = new JPanel();
-		
+
+//		JPanel lanePanel = new JPanel();
+
 		BarPanel barPanel = new BarPanel();
 		barPanel.setBounds(0, 700, 400, 10);
 

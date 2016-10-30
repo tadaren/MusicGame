@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,11 +24,12 @@ import javax.swing.ListSelectionModel;
 
 public class StartPanel extends JPanel{
 
+	private JFrame frame;
 	private final String musicdir;
 	private JList<String> musicList;
 
 	public StartPanel(){
-		JFrame frame = new JFrame("音ゲー");
+		frame = new JFrame("音ゲー");
 		frame.setBounds(10, 10, 600, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -58,9 +61,22 @@ public class StartPanel extends JPanel{
 		JScrollPane sp = new JScrollPane();
 		sp.getViewport().setView(musicList);
 		sp.setBounds(150,160,300,100);
+		musicList.setSelectedIndex(0);
 
 		this.setLayout(null);
 		this.add(sp);
+
+		musicList.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					if(!getMusicDir(musicList.getSelectedValue()).equals(null)){
+						frame.setEnabled(false);
+						new GamePanel(musicdir+"/"+musicList.getSelectedValue()+"/note.txt",getMusicDir(musicList.getSelectedValue()), frame);
+					}
+				}
+			}
+		});
 
 		JLabel title = new JLabel("音ゲー");
 		title.setFont(new Font("MSゴシック",Font.BOLD | Font.ITALIC, 70));
@@ -74,18 +90,35 @@ public class StartPanel extends JPanel{
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new GamePanel(musicList.getSelectedValue(),musicdir+"/"+musicList.getSelectedValue()+"/note.txt");
+				if(!getMusicDir(musicList.getSelectedValue()).equals(null)){
+					frame.setEnabled(false);
+					new GamePanel(musicdir+"/"+musicList.getSelectedValue()+"/note.txt",getMusicDir(musicList.getSelectedValue()),frame);
+				}
 			}
 		});
+		button.setBounds(250, 280, 100, 50);
+		this.add(button);
 
 		this.setBackground(Color.CYAN);
 		frame.add(this);
 		frame.setVisible(true);
 	}
 
+	public String getMusicDir(String dirname){
+		File f = new File(musicdir +"/"+ dirname);
+		String[] fs = f.list();
+		for(int i = 0; i < fs.length; i++){
+			f = new File(musicdir +"/"+ dirname+"/"+fs[i]);
+			if(f.isFile() && f.canRead() && f.getPath().endsWith(".mp3")){
+				return f.getPath();
+			}
+		}
+		JOptionPane.showMessageDialog(this, "音楽ファイルがありません。", "Error", JOptionPane.ERROR_MESSAGE);
+		return null;
+	}
+
 	public static void main(String[] args) {
 		new StartPanel();
-
 	}
 
 }

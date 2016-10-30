@@ -54,11 +54,13 @@ public class LaneSubPanel extends JPanel {
 
 	private void addNote(){
 		if(count == interval){
-			switch(notes[noteIndex]){
-			case 1: noteState.add(new float[]{0,1});break;
+			if(noteIndex < notes.length){
+				switch(notes[noteIndex]){
+				case 1: noteState.add(new float[]{0,1});break;
+				}
+				noteIndex++;
+				count = 1;
 			}
-			noteIndex++;
-			count = 1;
 		}else{
 			count++;
 		}
